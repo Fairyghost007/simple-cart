@@ -1,70 +1,64 @@
 const counter = document.getElementById('counter');
-const increment = document.querySelectorAll('#increment')
-const decrement = document.querySelectorAll('#decrement')
-const hearts=document.querySelectorAll('.heart')
+const increment = document.querySelectorAll('#increment');
+const decrement = document.querySelectorAll('#decrement');
+const hearts = document.querySelectorAll('.heart');
 
+const prixs = document.querySelectorAll('#prix');
+const allCounter = document.querySelectorAll('#counter');
 
+const deletebtns = document.querySelectorAll('#delete');
 
-
-const deletebtns = document.querySelectorAll('#delete')
-
-// changement de couleur du btn heart
-
-hearts.forEach(heart => {
-    heart.addEventListener('click', function() {
-        if (heart.classList.contains('text-white')) {
-            heart.classList.remove('text-white');
-            heart.classList.add('text-red-500');
+// Changement de couleur du btn heart
+for (let i = 0; i < hearts.length; i++) {
+    hearts[i].addEventListener('click', function() {
+        if (hearts[i].classList.contains('text-white')) {
+            hearts[i].classList.remove('text-white');
+            hearts[i].classList.add('text-red-500');
         } else {
-            heart.classList.remove('text-red-500');
-            heart.classList.add('text-white');
+            hearts[i].classList.remove('text-red-500');
+            hearts[i].classList.add('text-white');
         }
     });
-});
-/////////////////////////////////////////////////////////////////
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     function updateTotal() {
-        let total =0
-        prixs.forEach((prix,i) => {
-            prix = parseInt(prix.textContent);
-            qte=parseInt(allCounter[i].textContent)
+        let total = 0;
+        for (let i = 0; i < prixs.length; i++) {
+            let prix = parseInt(prixs[i].textContent);
+            let qte = parseInt(allCounter[i].textContent);
             total += prix * qte;
-        });
+        }
         document.getElementById('totalprix').textContent = total;
     }
 
     updateTotal();
 
-    //gerer  quatite du produit
-
-    increment.forEach((btn, i) => {
-        btn.addEventListener('click', function() {
-            allCounter[i].textContent = parseInt(allCounter[i].textContent)+1;
+    // Gérer quantité du produit
+    for (let i = 0; i < increment.length; i++) {
+        increment[i].addEventListener('click', function() {
+            allCounter[i].textContent = parseInt(allCounter[i].textContent) + 1;
             updateTotal();
         });
-    });
+    }
 
-    decrement.forEach((btn, i) => {
-        btn.addEventListener('click', function() {
+    for (let i = 0; i < decrement.length; i++) {
+        decrement[i].addEventListener('click', function() {
             if (parseInt(counter.textContent) > 1) {
-                allCounter[i].textContent = parseInt(allCounter[i].textContent)-1;
+                allCounter[i].textContent = parseInt(allCounter[i].textContent) - 1;
                 updateTotal();
             }
         });
-    });
+    }
 
-    // supprimer un produit
-
-    deletebtns.forEach((btn) => {
-        btn.addEventListener('click', function() {
-            const productParent = btn.parentElement.parentElement.parentElement; 
+    // Supprimer un produit
+    for (let i = 0; i < deletebtns.length; i++) {
+        deletebtns[i].addEventListener('click', function() {
+            const productParent = deletebtns[i].parentElement.parentElement.parentElement;
             if (productParent) {
                 productParent.remove();
                 updateTotal();
             }
         });
-    });
+    }
 });
-
-
