@@ -2,10 +2,8 @@ const counter = document.getElementById('counter')
 const increment = document.querySelectorAll('#increment')
 const decrement = document.querySelectorAll('#decrement')
 const hearts = document.querySelectorAll('.heart')
-
 const prixs = document.querySelectorAll('#prix')
 const allCounter = document.querySelectorAll('#counter')
-
 const deletebtns = document.querySelectorAll('#delete')
 
 // Changement de couleur du btn heart
@@ -20,8 +18,10 @@ for (let i = 0; i < hearts.length; i++) {
         }
     })
 }
-
+// metre a jour le total du cart
 function updateTotal() {
+    const prixs = document.querySelectorAll('#prix')
+    const allCounter = document.querySelectorAll('#counter')
     let total = 0
     for (let i = 0; i < prixs.length; i++) {
         let prix = parseInt(prixs[i].textContent)
@@ -32,9 +32,10 @@ function updateTotal() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    
     updateTotal()
 
-    // Gérer quantité du produit
+    // Gérer quantité du produit ajouter ou diminuer
     for (let i = 0 ;i < increment.length;i++) {
         increment[i].addEventListener('click', function() {
             allCounter[i].textContent = parseInt(allCounter[i].textContent) + 1
