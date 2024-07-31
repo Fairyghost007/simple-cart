@@ -7,17 +7,18 @@ const allCounter = document.querySelectorAll('#counter')
 const deletebtns = document.querySelectorAll('#delete')
 
 // Changement de couleur du btn heart
-for (let i = 0; i < hearts.length; i++) {
-    hearts[i].addEventListener('click', function() {
-        if (hearts[i].classList.contains('text-white')) {
-            hearts[i].classList.remove('text-white')
-            hearts[i].classList.add('text-red-500')
+for (let heart of hearts) {
+    heart.addEventListener('click', function() {
+        if (heart.classList.contains('text-white')) {
+            heart.classList.remove('text-white');
+            heart.classList.add('text-red-500');
         } else {
-            hearts[i].classList.remove('text-red-500')
-            hearts[i].classList.add('text-white')
+            heart.classList.remove('text-red-500');
+            heart.classList.add('text-white');
         }
-    })
+    });
 }
+
 // metre a jour le total du cart
 function updateTotal() {
     const prixs = document.querySelectorAll('#prix')
@@ -53,13 +54,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Supprimer un produit
-    for (let i = 0 ;i < deletebtns.length ;i++) {
-        deletebtns[i].addEventListener('click', function() {
-            const productParent = deletebtns[i].parentElement.parentElement.parentElement
-            if (productParent) {
-                productParent.remove()
-                updateTotal()
+    for (let deletebtn of deletebtns) {
+        deletebtn.addEventListener('click', function() {
+            const produitParent = deletebtn.parentElement.parentElement.parentElement;
+            if (produitParent) {
+                produitParent.remove();
+                updateTotal();
             }
-        })
+        });
     }
+    
 })
